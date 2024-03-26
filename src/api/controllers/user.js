@@ -78,6 +78,15 @@ const updateUser = async(req, res, next) => {
         const updateUser = new User(req.body);
         updateUser._id = id;
         const update = await User.findByIdAndUpdate(id, updateUser, { new: true });
+
+        if (req.file) {
+            deleteFile(update.profileImage);
+        }
+        if (req.file) {
+            updateUser.profileImage = req.file.path;
+
+        }
+
         return res.status(200).json(update);
     } catch (error) {
         return res.status(400).json("Error al actualizar el usuario");

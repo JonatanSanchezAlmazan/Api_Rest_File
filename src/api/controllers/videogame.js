@@ -57,6 +57,18 @@ const updateVideogame = async(req, res, next) => {
         const updateVideogame = new Videogame(req.body);
         updateVideogame._id = id;
         const update = await Videogame.findByIdAndUpdate(id, updateVideogame, { new: true });
+        if (req.file) {
+            deleteFile(update.frontPage);
+            deleteFile(update.backPage);
+        }
+        if (req.files) {
+            if (req.files.frontPage) {
+                update.frontPage = req.files.frontPage[0].path;
+            }
+            if (req.files.backPage) {
+                update.backPage = req.files.backPage[0].path;
+            }
+        }
         return res.status(200).json(update);
 
     } catch (error) {

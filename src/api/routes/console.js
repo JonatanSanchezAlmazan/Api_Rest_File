@@ -8,7 +8,7 @@ const consolesRoutes = require("express").Router();
 consolesRoutes.post("/register", isAdmin, upload.single("imgLogo"), postConsole);
 consolesRoutes.get("/", isAuth, getAllConsoles);
 consolesRoutes.get("/:id", isAuth, getConsolebyId);
-consolesRoutes.put("/:id", isAdmin, updateConsole);
+consolesRoutes.put("/:id", isAdmin, upload.single("imgLogo"), updateConsole);
 consolesRoutes.delete("/:id", isAdmin, deleteConsole);
 
 module.exports = consolesRoutes;

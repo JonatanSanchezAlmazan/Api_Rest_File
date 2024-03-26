@@ -9,7 +9,7 @@ usersRoutes.post("/register", upload.single("profileImage"), postUser);
 usersRoutes.post("/login", loginUser);
 usersRoutes.get("/", isAdmin, getAllUsers);
 usersRoutes.get("/:id", isAdmin, getUserById);
-usersRoutes.put("/:id", isAuth, updateUser);
+usersRoutes.put("/:id", isAuth, upload.single("profileImage"), updateUser);
 usersRoutes.delete("/:id", isAdmin, deleteUser);
 
 module.exports = usersRoutes;
