@@ -6,8 +6,8 @@ const { postVideogame, getAllVideogames, getVideogameById, updateVideogame, dele
 const videogamesRoutes = require("express").Router();
 
 videogamesRoutes.post("/register", isAdmin, upload.fields([{ name: "frontPage" }, { name: "backPage" }]), postVideogame);
-videogamesRoutes.get("/", isAuth, getAllVideogames);
-videogamesRoutes.get("/:id", isAuth, getVideogameById);
+videogamesRoutes.get("/", getAllVideogames);
+videogamesRoutes.get("/:id", getVideogameById);
 videogamesRoutes.put("/:id", isAdmin, upload.fields([{ name: "frontPage" }, { name: "backPage" }]), updateVideogame);
 videogamesRoutes.delete("/:id", isAdmin, deleteVideogame);
 

@@ -13,7 +13,7 @@ const isAdmin = async(req, res, next) => {
         const { id } = verifyJwt(modifiedToken);
         const user = await User.findById(id);
         if (user.rol === "admin") {
-            usersRoutes.password = null;
+            user.password = null;
             req.user = user;
             next();
         } else {

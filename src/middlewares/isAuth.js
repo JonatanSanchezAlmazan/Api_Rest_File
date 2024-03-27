@@ -1,5 +1,4 @@
 const User = require("../api/models/user");
-const usersRoutes = require("../api/routes/user");
 const { verifyJwt } = require("../utils/jwt/jwt");
 
 
@@ -13,7 +12,7 @@ const isAuth = async(req, res, next) => {
         const [, modifiedToken] = token.split(" ");
         const { id } = verifyJwt(modifiedToken);
         const user = await User.findById(id);
-        usersRoutes.password = null;
+        user.password = null;
         req.user = user;
         next();
     } catch (error) {

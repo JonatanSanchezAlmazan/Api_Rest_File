@@ -16,7 +16,7 @@ const postUser = async(req, res, next) => {
             userName: req.body.userName,
             password: req.body.password,
             profileImage: req.file.path,
-            rol: req.body.rol || "user",
+            rol: "user",
 
         });
 
